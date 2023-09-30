@@ -2,7 +2,6 @@ import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -95,9 +94,23 @@ import { CardModule } from 'primeng/card';
 import { BlockUIModule } from 'primeng/blockui';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { EmployeePageComponent } from './pages/employee-page/employee-page.component';
+import { EmployeeService } from './services/employee-service';
+import { RouterModule, Routes } from '@angular/router';
 
+const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginPageComponent,
+  },
+  {
+    path: 'employee',
+    component: EmployeePageComponent,
+  },
+];
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginPageComponent, EmployeePageComponent],
   imports: [
     AvatarModule,
     AvatarGroupModule,
@@ -193,17 +206,16 @@ import { HttpClientModule } from '@angular/common/http';
     CardModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
+    RouterModule.forRoot(routes),
   ],
-  providers: [],
+  exports: [RouterModule],
+  providers: [EmployeeService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
