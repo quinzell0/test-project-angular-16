@@ -21,6 +21,18 @@ export class LayoutComponent implements OnInit {
         routerLink: '/employee',
         routerLinkActiveOptions: 'active',
       },
+      {
+        label: 'Login',
+        icon: 'pi pi-fw pi-sign-in',
+        routerLink: '/login',
+      },
+    ];
+
+    this.actionMenu = [
+      {
+        label: 'Logout',
+        icon: 'pi pi-sign-out',
+      },
     ];
   }
 

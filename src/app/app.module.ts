@@ -97,25 +97,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { EmployeePageComponent } from './pages/employee-page/employee-page.component';
 import { EmployeeService } from './services/employee-service';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { LayoutComponent } from './pages/layout/layout.component';
+import { AppRoutingModule } from './app-routing.module';
 
-const routes: Routes = [
-  {
-    path: 'login',
-    component: LoginPageComponent,
-  },
-  {
-    path: 'employee',
-    component: EmployeePageComponent,
-  },
-];
 @NgModule({
   declarations: [AppComponent, LoginPageComponent, EmployeePageComponent, LayoutComponent],
   imports: [
     AvatarModule,
     AvatarGroupModule,
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -213,9 +205,8 @@ const routes: Routes = [
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    RouterModule.forRoot(routes),
   ],
-  exports: [RouterModule],
+
   providers: [EmployeeService],
   bootstrap: [AppComponent],
 })
