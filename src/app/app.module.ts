@@ -98,6 +98,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { EmployeePageComponent } from './pages/employee-page/employee-page.component';
 import { EmployeeService } from './services/employee-service';
 import { RouterModule, Routes } from '@angular/router';
+import { LayoutComponent } from './pages/layout/layout.component';
 
 const routes: Routes = [
   {
@@ -110,7 +111,7 @@ const routes: Routes = [
   },
 ];
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, EmployeePageComponent],
+  declarations: [AppComponent, LoginPageComponent, EmployeePageComponent, LayoutComponent],
   imports: [
     AvatarModule,
     AvatarGroupModule,

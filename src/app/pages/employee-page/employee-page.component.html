@@ -65,6 +65,7 @@
         <th pSortableColumn="email" style="min-width: 10rem">Email <p-sortIcon field="email"></p-sortIcon></th>
         <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
         <th pSortableColumn="group">Group <p-sortIcon field="group"></p-sortIcon></th>
+        <th>Actions</th>
         <th></th>
       </tr>
     </ng-template>
@@ -76,22 +77,27 @@
         <td>{{ employee.firstName }}</td>
         <td>{{ employee.lastName }}</td>
         <td>{{ employee.email }}</td>
+        <td>{{ employee.status }}</td>
         <td>{{ employee.group }}</td>
         <td>
-          <button
-            pButton
-            pRipple
-            icon="pi pi-pencil"
-            class="p-button-rounded p-button-success mr-2"
-            (click)="editEmployee(employee)"
-          ></button>
-          <button
-            pButton
-            pRipple
-            icon="pi pi-trash"
-            class="p-button-rounded p-button-warning"
-            (click)="deleteEmployee(employee)"
-          ></button>
+          <div class="flex-row">
+            <button
+              pButton
+              pRipple
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-success mr-2"
+              (click)="editEmployee(employee)"
+              style="margin-right: 0.2rem"
+            ></button>
+            <!-- <div style="margin-right: 5px"></div> -->
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-warning"
+              (click)="deleteEmployee(employee)"
+            ></button>
+          </div>
         </td>
       </tr>
     </ng-template>
