@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { Employee } from 'src/app/models/employee';
 import { EmployeeService } from 'src/app/services/employee-service';
 
@@ -12,7 +13,7 @@ import { EmployeeService } from 'src/app/services/employee-service';
 export class EmployeePageComponent implements OnInit {
   employeeDialog: boolean = false;
 
-  employees!: Employee[];
+  employees: Employee[] = [];
 
   employee!: Employee;
 
@@ -20,8 +21,20 @@ export class EmployeePageComponent implements OnInit {
 
   submitted: boolean = false;
 
+  inputValue: string = '';
+
+  maxDate: Date = new Date();
+
   status!: any[];
 
+  group!: any[];
+
+  first = 0;
+
+  rows = 10;
+
+  @ViewChild('bottomElement', { static: false })
+  bottomElementRef!: ElementRef;
   constructor(
     private employeeService: EmployeeService,
     private messageService: MessageService,
@@ -30,7 +43,7 @@ export class EmployeePageComponent implements OnInit {
 
   ngOnInit() {
     this.employeeService.getEmployees().then((data) => (this.employees = data));
-    this.status = [
+    this.group = [
       { label: 'BNI Group', value: 'BNI Group' },
       { label: 'BCA Group', value: 'BCA Group' },
       { label: 'Mandiri Group', value: 'Mandiri Group' },
@@ -42,6 +55,10 @@ export class EmployeePageComponent implements OnInit {
       { label: 'BTN Group', value: 'BTN Group' },
       { label: 'BRI Group', value: 'BRI Group' },
     ];
+    this.status = [
+      { label: 'Fixed', value: 'Fixed' },
+      { label: 'Intern', value: 'Intern' },
+    ];
   }
 
   openNew() {
@@ -50,7 +67,13 @@ export class EmployeePageComponent implements OnInit {
     this.employeeDialog = true;
   }
 
+  onInputChanged(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.inputValue = target.value;
+  }
+
   deleteSelectedEmployees() {
+    console.log(this.selectedEmployees);
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete the selected employee?',
       header: 'Confirm',
@@ -73,6 +96,10 @@ export class EmployeePageComponent implements OnInit {
     this.employeeDialog = true;
   }
 
+  public doFilter = (value: any) => {
+    this.employees.filter = value.trim().toLocaleLowerCase();
+  };
+
   deleteEmployee(employee: Employee) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ' + employee.firstName + '?',
@@ -91,10 +118,15 @@ export class EmployeePageComponent implements OnInit {
     this.submitted = false;
   }
 
+  clear(table: Table) {
+    table.clear();
+  }
+
   saveEmployee() {
     this.submitted = true;
 
     if (this.employee.firstName?.trim()) {
+      console.log(this.employee);
       if (this.employee.id) {
         this.employees[this.findIndexById(this.employee.id)] = this.employee;
         this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Employee Updated', life: 3000 });
@@ -120,6 +152,15 @@ export class EmployeePageComponent implements OnInit {
     }
 
     return index;
+  }
+
+  reset() {
+    this.first = 0;
+  }
+
+  pageChange(event: any) {
+    this.first = event.first;
+    this.rows = event.rows;
   }
 
   createId(): string {

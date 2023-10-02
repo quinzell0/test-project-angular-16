@@ -15,6 +15,11 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
+        path: '',
+        redirectTo: '/login',
+        pathMatch: 'full',
+      },
+      {
         path: 'employee',
         component: EmployeePageComponent,
       },
