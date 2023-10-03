@@ -1,22 +1,33 @@
 <div class="container">
-  <p-card>
-    <div class="text-center">
-      <p-image src="../../../assets/icons/icon-192x192.png" alt="Image"> </p-image>
-    </div>
-
-    <h4 class="text-center">Login to Web</h4>
-    <div style="margin-bottom: 10px"></div>
-    <div class="field col">
-      <div class="p-float-label">
-        <input id="username" pInputText />
-        <label for="username">Username</label>
+  <div class="card">
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <div class="text-center">
+        <p-image src="../../../assets/icons/icon-192x192.png" alt="Image"> </p-image>
       </div>
-    </div>
-    <div class="field col">
-      <div class="p-float-label">
-        <input id="password" pInputText />
-        <label for="password">Password</label>
+      <div class="text-center">
+        <h4 style="color: whitesmoke">Login to Web</h4>
+        <div style="margin-bottom: 10px"></div>
+        <div class="field col">
+          <div class="p-float-label">
+            <input formControlName="email" id="email" pInputText required />
+            <label class="custom-text" for="email">Email</label>
+            <!-- <small id="email" class="p-error">Need Email.</small> -->
+          </div>
+        </div>
+        <div class="field col">
+          <div class="p-float-label">
+            <input type="password" formControlName="password" id="password" pInputText required />
+            <label class="custom-text" for="password">Password</label>
+            <!-- <small id="password" class="p-error">Need Password.</small> -->
+          </div>
+        </div>
+        <div class="field col">
+          <button type="submit" pButton>Login</button>
+        </div>
+        <div style="margin-bottom: 1rem">
+          <a style="color: whitesmoke" routerLink="/signup">New User? Click to Sign Up</a>
+        </div>
       </div>
-    </div>
-  </p-card>
+    </form>
+  </div>
 </div>

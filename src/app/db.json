@@ -1,0 +1,40 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "signup": [
+    {
+      "fullName": "ardi",
+      "email": "ardibahdim1@gmail.com",
+      "password": "ardi0778",
+      "id": 1
+    },
+    {
+      "fullName": "ardiansyah",
+      "email": "ardi0778",
+      "password": "ardi0778",
+      "id": 2
+    }
+  ],
+  "login": [
+    {
+      
+      "email": "ardiansyah@gmail.com",
+      "password": "ardi0778"
+    }
+  ]
+}

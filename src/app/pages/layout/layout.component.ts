@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -13,7 +14,10 @@ export class LayoutComponent implements OnInit {
   companyList: any[] = ['Mandiri', 'BNI', 'BCA'];
   collapse: boolean = true;
 
-  constructor() {
+  name!: string;
+  email!: string;
+
+  constructor(private route: Router) {
     this.menu = [
       {
         label: 'Employee',
@@ -21,25 +25,21 @@ export class LayoutComponent implements OnInit {
         routerLink: '/employee',
         routerLinkActiveOptions: 'active',
       },
-      {
-        label: 'Login',
-        icon: 'pi pi-fw pi-sign-in',
-        routerLink: '/login',
-      },
-    ];
-
-    this.actionMenu = [
-      {
-        label: 'Logout',
-        icon: 'pi pi-sign-out',
-      },
     ];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.name = localStorage.getItem('fullName')!;
+    this.email = localStorage.getItem('email')!;
+  }
 
   toggleCollapse(): void {
     this.collapse = !this.collapse;
-    console.log(this.collapse);
+    // console.log(this.collapse);
+  }
+
+  logout() {
+    localStorage.clear();
+    this.route.navigate(['/login']);
   }
 }

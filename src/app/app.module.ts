@@ -97,12 +97,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { EmployeePageComponent } from './pages/employee-page/employee-page.component';
 import { EmployeeService } from './services/employee-service';
-import { Routes } from '@angular/router';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, EmployeePageComponent, LayoutComponent],
+  declarations: [AppComponent, LoginPageComponent, EmployeePageComponent, LayoutComponent, SignupPageComponent],
   imports: [
     AvatarModule,
     AvatarGroupModule,

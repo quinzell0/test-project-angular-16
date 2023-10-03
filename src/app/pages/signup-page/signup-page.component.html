@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="text-center">
+          <h1>Sign Up</h1>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="signUp()" class="text-center">
+          <div class="field col">
+            <div class="p-float-label">
+              <input formControlName="fullName" pInputText id="fullName" />
+              <label for="fullName">Full Name</label>
+            </div>
+          </div>
+          <div class="field col">
+            <div class="p-float-label">
+              <input formControlName="email" pInputText id="email" />
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="field col">
+            <div class="p-float-label">
+              <input formControlName="password" type="password" pInputText id="password" placeholder="Enter Password" />
+              <label for="password">Password</label>
+            </div>
+          </div>
+          <div style="margin-bottom: 1rem">
+            <button pButton type="submit">Sign Up</button>
+          </div>
+          <div>
+            <a style="color: whitesmoke" routerLink="/login">Already have an account? Click to Login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
